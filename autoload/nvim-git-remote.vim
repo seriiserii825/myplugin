@@ -1,4 +1,4 @@
-function! OpenGitProjectInBrowser()
+function! main#OpenGitProjectInBrowser()
   " Get the current Git root directory
   let l:git_root = system('git rev-parse --show-toplevel')
   if v:shell_error
@@ -84,4 +84,8 @@ function! OpenGitProjectInBrowser()
 endfunction
 
 " Map the function to a keybinding (e.g., <leader>go)
-nnoremap <leader>go :call OpenGitProjectInBrowser()<CR><CR>
+nnoremap <leader>go :call main#OpenGitProjectInBrowser()<CR><CR>
+
+function! myplugin#HelloWorld()
+    echo "Hello, world from autoload!"
+endfunction
