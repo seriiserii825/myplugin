@@ -57,7 +57,7 @@ function! OpenGitProjectInBrowser(mode = 0)
     " if url contains bitbucket
     if l:no_git =~ 'bitbucket'
       echo 'URL contains Bitbucket'
-      if current_file != ''
+      if a:current_file != ''
         let l:https_url = l:no_git . '/src/main' . a:current_file
         return l:https_url
       else
@@ -65,7 +65,7 @@ function! OpenGitProjectInBrowser(mode = 0)
         return l:https_url
       endif
     else
-      if current_file != ''
+      if a:current_file != ''
         return l:no_git . '/blob/main' . a:current_file
       else
         return l:no_git . '/blob/main'
@@ -79,7 +79,7 @@ function! OpenGitProjectInBrowser(mode = 0)
 
   let ssh_url = l:remote_url
   let https_url = ConvertSshToHttps(ssh_url, '')
-  if mode == 1
+  if a:mode == 1
     let https_url = ConvertSshToHttps(ssh_url, l:current_file)
   endif
   echo https_url
