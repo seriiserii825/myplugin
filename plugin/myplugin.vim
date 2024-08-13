@@ -21,7 +21,7 @@ function! OpenGitProjectInBrowser(mode = 0)
     return
   endif
 
-  function! ConvertSshToHttps(ssh_url, current_file)
+  function! ConvertSshToHttps(ssh_url, current_file = '')
     " Remove 'git@' from the SSH URL and convert to HTTPS format
     echo a:ssh_url
     " Replace the second occurrence of ':' with '/'
@@ -78,7 +78,11 @@ function! OpenGitProjectInBrowser(mode = 0)
   let l:current_file = substitute(l:current_file, l:git_root, '', '')
 
   let ssh_url = l:remote_url
-  let https_url = ConvertSshToHttps(ssh_url, current_file)
+  if mode == 1
+    let https_url = ConvertSshToHttps(ssh_url, l:current_file)
+  else
+    let https_url = ConvertSshToHttps(ssh_url, '')
+  endif
   echo https_url
 
   " Open the remote URL in the default web browser
