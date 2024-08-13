@@ -97,5 +97,5 @@ function! OpenGitProjectInBrowser(mode = 0)
   call system(l:open_cmd)
 endfunction
 
-nmap <leader>gp :OpenGitProject<CR><CR>
-nmap <leader>gf :OpenGitProject<CR><CR>
+nmap <leader>gp :OpenGitProject<CR>
+nmap <leader>gf :OpenGitProject<CR>
