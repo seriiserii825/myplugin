@@ -65,7 +65,7 @@ function! OpenGitProjectInBrowser(mode = 0)
         return l:https_url
       endif
     else
-      if a:mode == 1
+      if mode == 1
         return l:no_git . '/blob/main' . a:current_file
       else
         return l:no_git . '/blob/main'
