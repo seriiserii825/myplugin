@@ -3,7 +3,7 @@
 command! OpenGitProject call OpenGitProjectInBrowser()
 command! OpenGitProjectFile call OpenGitProjectInBrowser(1)
 
-function! OpenGitProjectInBrowser(mode)
+function! OpenGitProjectInBrowser(mode = 0)
   " Get the current Git root directory
   let l:git_root = system('git rev-parse --show-toplevel')
   if v:shell_error
