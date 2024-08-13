@@ -57,7 +57,7 @@ function! OpenGitProjectInBrowser(mode = 0)
     " if url contains bitbucket
     if l:no_git =~ 'bitbucket'
       echo 'URL contains Bitbucket'
-      if a:mode == 1
+      if mode == 1
         let l:https_url = l:no_git . '/src/main' . a:current_file
         return l:https_url
       else
