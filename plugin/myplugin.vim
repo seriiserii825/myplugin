@@ -1,8 +1,9 @@
 
 " Define a command to trigger your plugin's functionality
-command! MyCommand call OpenGitProjectInBrowser()
+command! OpenGitProject call OpenGitProjectInBrowser()
+command! OpenGitProjectFile call OpenGitProjectInBrowser(1)
 
-function! OpenGitProjectInBrowser()
+function! OpenGitProjectInBrowser(mode)
   " Get the current Git root directory
   let l:git_root = system('git rev-parse --show-toplevel')
   if v:shell_error
@@ -30,7 +31,7 @@ function! OpenGitProjectInBrowser()
 
     " Print the URL after replacing the second ':'
     echo 'URL after colon substitution: ' . l:url
-   " Get the last 5 characters (or fewer if the line is shorter)
+    " Get the last 5 characters (or fewer if the line is shorter)
     let l:end_symbols = l:url[-5:]
 
     " Print the characters at the end of the line
@@ -45,22 +46,30 @@ function! OpenGitProjectInBrowser()
     let git_sign = '\.git$'
     if l:url =~ git_sign
       echo 'URL contains .git suffix'
-        let l:no_git = substitute(l:url, git_sign, '', '')
-        echo 'URL after removing .git: ' . l:no_git
+      let l:no_git = substitute(l:url, git_sign, '', '')
+      echo 'URL after removing .git: ' . l:no_git
     else
       echo 'URL does not contain .git suffix'
-        let l:no_git = l:url
-        echo 'URL after removing .git: ' . l:no_git
+      let l:no_git = l:url
+      echo 'URL after removing .git: ' . l:no_git
     endif
 
     " if url contains bitbucket
     if l:no_git =~ 'bitbucket'
       echo 'URL contains Bitbucket'
-      " let l:https_url = l:no_git . '/src/main' . a:current_file
-      let l:https_url = l:no_git . '/src/main'
-      return l:https_url
+      if a:mode == 1
+        let l:https_url = l:no_git . '/src/main' . a:current_file
+        return l:https_url
+      else
+        let l:https_url = l:no_git . '/src/main'
+        return l:https_url
+      endif
     else
-      return l:no_git . '/blob/main'
+      if a:mode == 1
+        return l:no_git . '/blob/main' . a:current_file
+      else
+        return l:no_git . '/blob/main'
+      endif
     endif
   endfunction
 
@@ -88,4 +97,5 @@ function! OpenGitProjectInBrowser()
   call system(l:open_cmd)
 endfunction
 
-nmap <leader>go :MyCommand<CR><CR>
+nmap <leader>gp :OpenGitProject<CR><CR>
+nmap <leader>gf :OpenGitProject<CR><CR>
