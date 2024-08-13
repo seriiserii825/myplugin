@@ -101,4 +101,4 @@ function! OpenGitProjectInBrowser(mode = 0)
 endfunction
 
 nmap <leader>gp :OpenGitProject<CR>
-nmap <leader>gf :OpenGitProject<CR>
+nmap <leader>gf :OpenGitProjectFile<CR>
