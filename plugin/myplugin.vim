@@ -56,10 +56,11 @@ function! OpenGitProjectInBrowser()
     " if url contains bitbucket
     if l:no_git =~ 'bitbucket'
       echo 'URL contains Bitbucket'
-      let l:https_url = l:no_git . '/src/main' . a:current_file
+      " let l:https_url = l:no_git . '/src/main' . a:current_file
+      let l:https_url = l:no_git . '/src/main'
       return l:https_url
     else
-      return l:no_git . '/blob/main' . a:current_file
+      return l:no_git . '/blob/main'
     endif
   endfunction
 
@@ -87,4 +88,4 @@ function! OpenGitProjectInBrowser()
   call system(l:open_cmd)
 endfunction
 
-nmap <leader>go :MyCommand<CR>
+nmap <leader>go :MyCommand<CR><CR>
