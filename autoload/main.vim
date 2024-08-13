@@ -84,4 +84,4 @@ function! OpenGitProjectInBrowser()
 endfunction
 
 " Map the function to a keybinding (e.g., <leader>go)
-nnoremap <leader>bb :call OpenGitProjectInBrowser()<CR><CR>
+nnoremap <leader>go :call OpenGitProjectInBrowser()<CR><CR>
