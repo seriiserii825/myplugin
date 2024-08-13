@@ -1,4 +1,8 @@
-function! main#OpenGitProjectInBrowser()
+
+" Define a command to trigger your plugin's functionality
+command! MyCommand call OpenGitProjectInBrowser()
+
+function! OpenGitProjectInBrowser()
   " Get the current Git root directory
   let l:git_root = system('git rev-parse --show-toplevel')
   if v:shell_error
@@ -83,9 +87,4 @@ function! main#OpenGitProjectInBrowser()
   call system(l:open_cmd)
 endfunction
 
-" Map the function to a keybinding (e.g., <leader>go)
-nnoremap <leader>go :call main#OpenGitProjectInBrowser()<CR><CR>
-
-function! myplugin#HelloWorld()
-    echo "Hello, world from autoload!"
-endfunction
+nmap <leader>go :MyCommand<CR>
