@@ -1,7 +1,7 @@
 nvim-git-open 
 ==============
 
-A simple plugin to open current github or bitbucket project or file in browser
+A simple plugin to open current github or bitbucket project in browser
 
 Installation
 ------------
